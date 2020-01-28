@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "a600158b-51c2-46a5-b69f-8b3704e93825",
+		"name": "ElasticSearch",
+		"description": "UTU Elasti Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Maintenance",
+			"item": [
+				{
+					"name": "Cat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{elastic_search}}/_cat/indices",
+							"host": [
+								"{{elastic_search}}"
+							],
+							"path": [
+								"_cat",
+								"indices"
+							]
+						},
+						"description": "Cat"
+					},
+					"response": []
+				},
+				{
+					"name": "Cat Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{elastic_search}}/logstash-2019.08.09/_search?q=authenticatehello",
+							"host": [
+								"{{elastic_search}}"
+							],
+							"path": [
+								"logstash-2019.08.09",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "authenticatehello"
+								}
+							]
+						},
+						"description": "Cat"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Index",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"settings\" : {\r\n        \"number_of_shards\" : 1\r\n    },\r\n    \"mappings\" : {\r\n        \"properties\" : {\r\n            \"field1\" : { \"type\" : \"text\" }\r\n        }\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{elastic_search}}/gn_test",
+							"host": [
+								"{{elastic_search}}"
+							],
+							"path": [
+								"gn_test"
+							]
+						},
+						"description": "Create Index"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Index info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"settings\" : {\r\n        \"index\" : {\r\n            \"number_of_shards\" : 3, \r\n            \"number_of_replicas\" : 1 \r\n        }\r\n    },\r\n    \"mappings\" : {\r\n        \"doc_blog\" : {\r\n            \"properties\" : {\r\n                \"content\" : { \"type\" : \"text\" },\r\n\t\t\t\t\"date\": {\r\n          \"type\":   \"date\",\r\n          \"format\": \"yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis\"\r\n        },\"user\": {\r\n          \"type\":  \"keyword\"\r\n        }\r\n            }\r\n        }\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{elastic_search}}/gn_test",
+							"host": [
+								"{{elastic_search}}"
+							],
+							"path": [
+								"gn_test"
+							]
+						},
+						"description": "Get Index info"
+					},
+					"response": []
+				},
+				{
+					"name": "Simple query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{elastic_search}}/mw_utuplus_dev/_search?q=request.email:giovanni.nocco",
+							"host": [
+								"{{elastic_search}}"
+							],
+							"path": [
+								"mw_utuplus_dev",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "request.email:giovanni.nocco"
+								}
+							]
+						},
+						"description": "Simple query"
+					},
+					"response": []
+				}
+			],
+			"description": "Maintenance folder"
+		},
+		{
+			"name": "Otello MW",
+			"item": [
+				{
+					"name": "Otello Query",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}\n"
+						},
+						"url": {
+							"raw": "{{elastic_search}}/mw_customs_otellos0_qa/_search",
+							"host": [
+								"{{elastic_search}}"
+							],
+							"path": [
+								"mw_customs_otellos0_qa",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Otello Middleware",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "62699ccf-75e8-4350-86a3-23f4c5c05358",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "14748d1a-51c6-41f3-8bb8-4da9a1b12b57",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{elastic_search}}/_cat",
+					"host": [
+						"{{elastic_search}}"
+					],
+					"path": [
+						"_cat"
+					]
+				},
+				"description": "Home"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{user_elastic}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{pwd_elastic}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3e9291d7-043f-4251-9fd1-94dc7280372b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "67878a05-fb9f-4fcc-b918-52dcd8383501",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
